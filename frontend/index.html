@@ -1,85 +1,54 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#080d13">
-  <title>EVIL EYE TERMINAL — See Beyond The Market</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/styles.css">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#000000">
+<title>EVIL EYE TERMINAL — See Beyond The Market</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/styles.css">
 </head>
 <body>
-  <div class="app-shell">
-    <aside class="sidebar" id="sidebar">
-      <a class="brand" href="#"><span class="brand-mark">◉</span><span><b>EVIL EYE</b><small>TERMINAL <i>v0.2</i></small></span></a>
-      <div class="side-label">WORKSPACE</div>
-      <nav class="nav">
-        <button class="nav-item active" data-page="overview"><span>▦</span> Overview <kbd>01</kbd></button>
-        <button class="nav-item" data-page="markets"><span>⌁</span> Markets <kbd>02</kbd></button>
-        <button class="nav-item" data-page="screener"><span>⊞</span> Screener <kbd>03</kbd></button>
-        <button class="nav-item" data-page="research"><span>◫</span> Research <kbd>04</kbd></button>
-        <button class="nav-item" data-page="news"><span>◉</span> News <kbd>05</kbd></button>
-        <button class="nav-item" data-page="calendar"><span>▤</span> Calendar <kbd>06</kbd></button>
-      </nav>
-      <div class="side-label watch-label">PERSONAL</div>
-      <div class="watch-mini" id="mini-watchlist"></div>
-      <div class="sidebar-bottom"><span class="status-dot"></span> SYSTEM OPERATIONAL <small>DEMO ENVIRONMENT</small></div>
-    </aside>
-
-    <main class="main">
-      <header class="topbar">
-        <div class="top-left"><button class="icon-btn mobile-menu" id="menu-toggle" aria-label="Toggle menu">☰</button><div class="crumb">WORKSPACE <span>/</span> <b id="page-crumb">OVERVIEW</b></div></div>
-        <div class="top-actions"><div class="search-wrap"><span>⌕</span><input id="global-search" placeholder="Search symbol or company..." autocomplete="off"><kbd>⌘ K</kbd></div><button class="icon-btn" id="refresh-btn" title="Refresh data">↻</button><div class="avatar">EE</div></div>
-      </header>
-
-      <div class="content">
-        <section class="page active" id="page-overview">
-          <div class="page-heading"><div><div class="eyebrow">TUESDAY, 11 NOVEMBER 2026 <span class="live-pill"><i></i> DEMO SESSION</span></div><h1>Market overview<span>.</span></h1><p>Your command center for market context, watchlists and research.</p></div><button class="primary-btn" id="export-overview">↓ Export snapshot</button></div>
-          <div class="notice"><span>ⓘ</span><div><b>SIMULATED DATA ENVIRONMENT</b><small>All prices, chart points, headlines and events are illustrative. They are not live quotes or investment recommendations.</small></div></div>
-          <div class="section-head"><h2>Global indices <small>DEMO SNAPSHOT</small></h2><span class="muted" id="as-of">Updating…</span></div>
-          <div class="metric-grid" id="index-cards"></div>
-          <div class="dashboard-grid">
-            <article class="panel chart-panel"><div class="panel-head"><div><h3>Market performance</h3><p id="chart-subtitle">NIFTY 50 · Illustrative price series</p></div><div class="segmented" id="period-tabs"><button class="selected" data-period="1D">1D</button><button data-period="1W">1W</button><button data-period="1M">1M</button><button data-period="3M">3M</button><button data-period="1Y">1Y</button></div></div><div class="chart-meta"><strong id="chart-price">—</strong><span id="chart-change">—</span></div><div class="chart" id="main-chart"></div><div class="chart-axis"><span>OPEN</span><span>SESSION RANGE</span><span>LAST</span></div></article>
-            <article class="panel watch-panel"><div class="panel-head"><div><h3>Watchlist</h3><p>Your tracked instruments</p></div><button class="text-btn" data-goto="markets">View all ↗</button></div><div class="watchlist" id="watchlist"></div><div class="add-watch"><input id="watch-input" placeholder="Add symbol e.g. INFY"><button id="add-watch">+</button></div></article>
-          </div>
-          <div class="dashboard-grid lower-grid">
-            <article class="panel"><div class="panel-head"><div><h3>Market breadth</h3><p>Advances vs declines · demo</p></div><span class="tiny-tag">NSE</span></div><div id="breadth" class="breadth"></div></article>
-            <article class="panel"><div class="panel-head"><div><h3>Latest headlines</h3><p>Sample intelligence feed</p></div><button class="text-btn" data-goto="news">All news ↗</button></div><div id="headline-list" class="headline-list"></div></article>
-          </div>
-        </section>
-
-        <section class="page" id="page-markets">
-          <div class="page-heading"><div><div class="eyebrow">MARKET DATA / DIRECTORY</div><h1>Markets<span>.</span></h1><p>Explore the instrument universe available in this demo.</p></div></div>
-          <div class="panel table-panel"><div class="table-toolbar"><div class="search-wrap table-search"><span>⌕</span><input id="market-search" placeholder="Filter instruments..."></div><select id="market-kind"><option>All</option><option>Index</option><option>Equity</option></select><button class="secondary-btn" id="market-export">↓ CSV</button></div><div class="table-scroll"><table><thead><tr><th>SYMBOL</th><th>INSTRUMENT</th><th>TYPE</th><th>EXCHANGE</th><th class="right">LAST PRICE</th><th class="right">CHANGE %</th></tr></thead><tbody id="market-rows"></tbody></table></div></div>
-        </section>
-
-        <section class="page" id="page-screener">
-          <div class="page-heading"><div><div class="eyebrow">DISCOVERY / FILTERS</div><h1>Equity screener<span>.</span></h1><p>Filter the sample universe and inspect the results.</p></div></div>
-          <div class="panel"><div class="screener-controls"><label>Search<input id="screen-search" placeholder="Symbol or company"></label><label>Direction<select id="screen-direction"><option value="all">All changes</option><option value="up">Positive</option><option value="down">Negative</option></select></label><label>Minimum change<input id="screen-min" type="number" value="0" step="0.1"></label><button class="primary-btn" id="screen-apply">Apply filters</button></div><div class="table-scroll"><table><thead><tr><th>SYMBOL</th><th>COMPANY</th><th>PRICE</th><th>CHANGE</th><th>CLASSIFICATION</th></tr></thead><tbody id="screen-rows"></tbody></table></div></div>
-        </section>
-
-        <section class="page" id="page-research">
-          <div class="page-heading"><div><div class="eyebrow">INTELLIGENCE / COMPANY SNAPSHOTS</div><h1>Research<span>.</span></h1><p>Company and instrument reference cards for learning and exploration.</p></div></div>
-          <div class="research-grid" id="research-grid"></div>
-        </section>
-
-        <section class="page" id="page-news">
-          <div class="page-heading"><div><div class="eyebrow">INTELLIGENCE / HEADLINES</div><h1>News desk<span>.</span></h1><p>Sample headlines to demonstrate the news workspace.</p></div></div>
-          <div class="panel news-panel" id="news-feed"></div>
-        </section>
-
-        <section class="page" id="page-calendar">
-          <div class="page-heading"><div><div class="eyebrow">EVENTS / AGENDA</div><h1>Calendar<span>.</span></h1><p>Illustrative event schedule. Verify dates with official sources.</p></div></div>
-          <div class="panel calendar-panel" id="calendar-feed"></div>
-        </section>
-
-        <footer><span>EVIL EYE TERMINAL <b>·</b> SEE BEYOND THE MARKET</span><span>INDEPENDENT EDUCATIONAL PROTOTYPE · NOT FINANCIAL ADVICE</span></footer>
-      </div>
-    </main>
-  </div>
-  <div class="toast" id="toast" role="status"></div>
-  <script src="/assets/app.js"></script>
-</body>
-</html>
+<div class="app-shell">
+<aside class="sidebar" id="sidebar">
+<a class="brand" href="#"><span class="brand-mark">◉</span><span><b>EVIL EYE</b><small>TERMINAL <i>v0.3</i></small></span></a>
+<div class="side-label">WORKSPACE</div>
+<nav class="nav">
+<button class="nav-item active" data-page="overview"><span>▦</span> Overview <kbd>01</kbd></button>
+<button class="nav-item" data-page="markets"><span>⌁</span> Markets <kbd>02</kbd></button>
+<button class="nav-item" data-page="screener"><span>⊞</span> Screener <kbd>03</kbd></button>
+<button class="nav-item" data-page="research"><span>◫</span> Research <kbd>04</kbd></button>
+<button class="nav-item" data-page="news"><span>◉</span> News desk <kbd>05</kbd></button>
+<button class="nav-item" data-page="calendar"><span>▤</span> Calendar <kbd>06</kbd></button>
+</nav>
+<div class="side-label watch-label">PINNED INSTRUMENTS</div><div class="watch-mini" id="mini-watchlist"></div>
+<div class="sidebar-bottom"><span class="status-dot"></span> SYSTEM OPERATIONAL<small>ILLUSTRATIVE DATA MODE</small></div>
+</aside>
+<main class="main">
+<header class="topbar"><div class="top-left"><button class="icon-btn mobile-menu" id="menu-toggle" aria-label="Toggle menu">☰</button><div class="crumb">WORKSPACE <span>/</span> <b id="page-crumb">OVERVIEW</b></div></div>
+<div class="top-actions"><div class="search-wrap"><span>⌕</span><input id="global-search" placeholder="Search symbol or company..." autocomplete="off"><kbd>CTRL K</kbd></div><button class="icon-btn" id="refresh-btn" title="Refresh data">↻</button><div class="avatar">EE</div></div></header>
+<div class="content">
+<section class="page active" id="page-overview">
+<div class="page-heading"><div><div class="eyebrow">CROSS-MARKET INTELLIGENCE <span class="live-pill"><i></i> DEMO SNAPSHOT</span></div><h1>Market overview<span>.</span></h1><p>India and global market context in one research workspace.</p></div><button class="primary-btn" id="export-overview">↓ Export snapshot</button></div>
+<div class="notice"><span>ⓘ</span><div><b>ILLUSTRATIVE DATA ENVIRONMENT</b><small>Prices, charts, headlines and events are sample data—not live quotes, verified news or investment recommendations.</small></div></div>
+<div class="section-head"><h2>MARKET PULSE <small>REFERENCE UNIVERSE</small></h2><span class="muted" id="as-of">Loading…</span></div>
+<div class="region-tabs" id="overview-regions"><button class="selected" data-region="All">ALL REGIONS</button><button data-region="India">INDIA</button><button data-region="Americas">AMERICAS</button><button data-region="Europe">EUROPE</button><button data-region="Asia Pacific">ASIA PACIFIC</button></div>
+<div class="metric-grid" id="index-cards"></div>
+<div class="dashboard-grid">
+<article class="panel chart-panel"><div class="panel-head"><div><h3>Instrument performance</h3><p id="chart-subtitle">NIFTY 50 · Illustrative series</p></div><div class="segmented" id="period-tabs"><button class="selected" data-period="1D">1D</button><button data-period="1W">1W</button><button data-period="1M">1M</button><button data-period="3M">3M</button><button data-period="1Y">1Y</button></div></div>
+<div class="chart-meta"><strong id="chart-price">—</strong><span id="chart-change">—</span></div><div class="chart" id="main-chart"></div><div class="chart-axis"><span>START</span><span>REFERENCE SERIES</span><span>END</span></div></article>
+<article class="panel watch-panel"><div class="panel-head"><div><h3>Watchlist</h3><p>Locally saved for this session</p></div><button class="text-btn" data-goto="markets">Explore ↗</button></div><div class="watchlist" id="watchlist"></div><div class="add-watch"><input id="watch-input" placeholder="Add symbol e.g. INFY"><button id="add-watch" aria-label="Add to watchlist">+</button></div></article>
+</div>
+<div class="dashboard-grid lower-grid"><article class="panel"><div class="panel-head"><div><h3>Market breadth</h3><p>Illustrative India market snapshot</p></div><span class="tiny-tag">NSE</span></div><div id="breadth" class="breadth"></div></article>
+<article class="panel"><div class="panel-head"><div><h3>Latest headlines</h3><p>Sample intelligence feed</p></div><button class="text-btn" data-goto="news">News desk ↗</button></div><div id="headline-list" class="headline-list"></div></article></div>
+</section>
+<section class="page" id="page-markets"><div class="page-heading"><div><div class="eyebrow">MARKET DATA / DIRECTORY</div><h1>Markets<span>.</span></h1><p>Browse a cross-region reference universe.</p></div></div>
+<div class="panel table-panel"><div class="table-toolbar"><div class="search-wrap table-search"><span>⌕</span><input id="market-search" placeholder="Filter instruments..."></div><select id="market-region"><option>All</option><option>India</option><option>Americas</option><option>Europe</option><option>Asia Pacific</option><option>Global</option></select><select id="market-kind"><option>All</option><option>Index</option><option>Equity</option><option>Commodity</option><option>FX</option></select><button class="secondary-btn" id="market-export">↓ CSV</button></div>
+<div class="table-scroll"><table><thead><tr><th>SYMBOL</th><th>INSTRUMENT</th><th>REGION</th><th>TYPE</th><th>EXCHANGE / REF</th><th class="right">LAST*</th><th class="right">CHANGE*</th></tr></thead><tbody id="market-rows"></tbody></table></div><div class="table-foot">*Illustrative values only. Currency is shown per instrument in the detail listing.</div></div></section>
+<section class="page" id="page-screener"><div class="page-heading"><div><div class="eyebrow">DISCOVERY / FILTERS</div><h1>Market screener<span>.</span></h1><p>Explore the sample universe by region, direction and magnitude.</p></div></div>
+<div class="panel"><div class="screener-controls"><label>Search<input id="screen-search" placeholder="Symbol or company"></label><label>Region<select id="screen-region"><option>All</option><option>India</option><option>Americas</option><option>Europe</option><option>Asia Pacific</option><option>Global</option></select></label><label>Direction<select id="screen-direction"><option value="all">All changes</option><option value="up">Positive</option><option value="down">Negative</option></select></label><label>Minimum absolute change %<input id="screen-min" type="number" value="0" min="0" step="0.1"></label><button class="primary-btn" id="screen-apply">Apply filters</button></div><div class="table-scroll"><table><thead><tr><th>SYMBOL</th><th>INSTRUMENT</th><th>REGION</th><th>REFERENCE PRICE</th><th>CHANGE</th><th>BIAS</th></tr></thead><tbody id="screen-rows"></tbody></table></div></div></section>
+<section class="page" id="page-research"><div class="page-heading"><div><div class="eyebrow">INTELLIGENCE / INSTRUMENT PROFILES</div><h1>Research<span>.</span></h1><p>Reference cards for learning and market observation.</p></div></div><div class="research-grid" id="research-grid"></div></section>
+<section class="page" id="page-news"><div class="page-heading"><div><div class="eyebrow">INTELLIGENCE / HEADLINES</div><h1>News desk<span>.</span></h1><p>Sample headlines only; no external news feed is connected.</p></div></div><div class="panel news-panel" id="news-feed"></div></section>
+<section class="page" id="page-calendar"><div class="page-heading"><div><div class="eyebrow">EVENTS / AGENDA</div><h1>Calendar<span>.</span></h1><p>Illustrative events. Confirm schedules with official publishers.</p></div></div><div class="panel calendar-panel" id="calendar-feed"></div></section>
+<footer><span>EVIL EYE TERMINAL <b>·</b> SEE BEYOND THE MARKET</span><span>EDUCATIONAL RESEARCH PROTOTYPE · NOT FINANCIAL ADVICE</span></footer>
+</div></main></div><div class="toast" id="toast" role="status"></div><script src="/assets/app.js"></script>
+</body></html>
